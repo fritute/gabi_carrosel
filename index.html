@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a Pessoa Mais Especial do Mundo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fff5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .carrossel {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .foto-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .foto-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .foto-item img {
+            width: 100%;
+            display: block;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .carrossel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            color: #e74c3c;
+            font-size: 1.5rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .carrossel-btn.prev {
+            left: 15px;
+        }
+
+        .carrossel-btn.next {
+            right: 15px;
+        }
+
+        .mensagem {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .mensagem h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #e74c3c;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .mensagem p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .destaque {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: #e74c3c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .foto-item img {
+                height: 350px;
+            }
+        
+            .mensagem h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Para você, meu amor</h1>
+        </header>
+        
+        <div class="carrossel">
+            <div class="foto-container" id="fotoContainer">
+
+                <div class="foto-item">
+                    <img src="assets/foto1.jpg" alt="Nossa foto 1">
+                </div>
+                <div class="foto-item">
+                    <img src="assets/foto2.jpg" alt="Nossa foto 2">
+                </div>
+                <div class="foto-item">
+                    <img src="assets/foto3.jpg" alt="Nossa foto 3">
+                </div>
+                <div class="foto-item">
+                    <img src="assets/foto4.jpg" alt="Nossa foto 4">
+                </div>
+                <div class="foto-item">
+                    <img src="assets/foto5.jpg" alt="Nossa foto 5">
+                </div>
+                <div class="foto-item">
+                    <img src="assets/foto6.jpg" alt="Nossa foto 6">
+                </div>
+
+            </div>
+            <button class="carrossel-btn prev" onclick="mudarFoto(-1)">❮</button>
+            <button class="carrossel-btn next" onclick="mudarFoto(1)">❯</button>
+        </div>
+        
+        <div class="mensagem">
+            <h2>Minha Princesa</h2>
+            <p>
+                Cada dia ao seu lado é um presente que a vida me deu. 
+                Seu sorriso ilumina meus dias e seu amor aquece meu coração.
+            </p>
+            <p>
+                Você é a pessoa mais incrível que já conheci, e eu sou 
+                imensamente grato por ter você na minha vida.
+            </p>
+            <p>
+                Este site é pequeno diante de tudo que sinto por você, mas 
+                queria que soubesse que...
+            </p>
+            <p class="destaque">
+                EU TE AMO MUITO! ❤️
+            </p>
+            <p>
+                Obrigado por ser você e por me fazer o homem mais feliz do mundo.
+            </p>
+        </div>
+        
+        <footer>
+            <p>Feito com ❤️ por você</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const fotos = document.querySelectorAll('.foto-item');
+        const totalFotos = fotos.length;
+        const container = document.getElementById('fotoContainer');
+        
+        function mudarFoto(direction) {
+            currentIndex += direction;
+            
+            if (currentIndex >= totalFotos) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = totalFotos - 1;
+            }
+            
+            container.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        
+        // Inicia o carrossel
+        container.style.transform = `translateX(-${currentIndex * 100}%)`;
+    </script>
+</body>
+</html>
